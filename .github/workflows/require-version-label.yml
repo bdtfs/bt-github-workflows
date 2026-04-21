@@ -26,7 +26,7 @@ jobs:
       - name: Validate version label
         run: |
           set -euo pipefail
-          mapfile -t LABELS < <(jq -r '.pull_request.labels[].name' <<< '${{ toJson(github.event) }}')
+          mapfile -t LABELS < <(jq -r '.pull_request.labels[].name' "$GITHUB_EVENT_PATH")
           count=0
           for L in "${LABELS[@]}"; do
             case "$L" in
