@@ -47,7 +47,7 @@ jobs:
         id: bump
         run: |
           set -euo pipefail
-          mapfile -t LABELS < <(jq -r '.pull_request.labels[].name' <<< '${{ toJson(github.event) }}')
+          mapfile -t LABELS < <(jq -r '.pull_request.labels[].name' "$GITHUB_EVENT_PATH")
 
           part=""
           count=0
